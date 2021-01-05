@@ -48,6 +48,7 @@ struct ContentView: View {
                 Section(header: Text("Participant name")) {
                     
                     Text("村尾")
+                    
                     Text("村尾")
                     Text("村尾")
                     Text("村尾")

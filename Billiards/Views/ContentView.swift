@@ -47,16 +47,15 @@ struct ContentView: View {
                 
                 Section(header: Text("Participant name")) {
                     
-                    Text("村尾")
-                    
-                    Text("村尾")
-                    Text("村尾")
-                    Text("村尾")
+                    ForEach(0...Int(numOfPeople - 1), id: \.self) { index in
+                        
+                        Text("\(index + 1): 村尾")
+                    }
                 }
             }
             .listStyle(InsetGroupedListStyle())
             
-            Button(action: {}) {
+            NavigationLink(destination: DetailView()) {
                 
                 Text("next")
                     .autocapitalization(.allCharacters)

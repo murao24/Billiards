@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct BilliardsApp: App {
+    
     var body: some Scene {
+        
         WindowGroup {
-            ContentView()
+            
+            NavigationView {
+                
+                ContentView()
+            }
         }
     }
 }

@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var numOfPeople: Double = 4.0
-    @State private var numOfBall: Double = 3.0
+    @ObservedObject var BiliVM: BiliViewModel = BiliViewModel()
+    @State private var numOfBalls: Double = 3.0
+    @State private var participants: [String] = []
+    @State private var nameTextField: String = ""
     
     var body: some View {
         
@@ -22,41 +24,37 @@ struct ContentView: View {
                     
                     HStack {
                         
-                        Slider(value: $numOfPeople, in: 2...6, step: 1.0) {
-                            
-                            Text("Number of people")
-                        }
-                        
-                        Spacer()
-                        
-                        Text("\(Int(numOfPeople)) People")
-                    }
-                    
-                    HStack {
-                        
-                        Slider(value: $numOfBall, in: 1...4, step: 1.0) {
+                        Slider(value: $numOfBalls, in: 1...4, step: 1.0) {
                             
                             Text("Number of ball")
                         }
                         
                         Spacer()
                         
-                        Text("\(Int(numOfBall)) Ball")
+                        Text("\(Int(numOfBalls)) Ball")
                     }
                 }
                 
                 Section(header: Text("Participant name")) {
                     
-                    Text("村尾")
+                    TextField("Enter your name", text: $nameTextField, onCommit: {
+                        
+                        if !nameTextField.isEmpty {
+                            
+                            self.participants.append(nameTextField)
+                            self.nameTextField = ""
+                        }
+                    })
                     
-                    Text("村尾")
-                    Text("村尾")
-                    Text("村尾")
+                    Button(action: {} ) {
+                        
+                        Label("Add a new participant", systemImage: "plus.circle.fill")
+                    }
                 }
             }
             .listStyle(InsetGroupedListStyle())
             
-            Button(action: {}) {
+            NavigationLink(destination: DetailView(participants: participants)) {
                 
                 Text("next")
                     .autocapitalization(.allCharacters)

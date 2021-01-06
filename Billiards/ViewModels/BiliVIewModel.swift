@@ -6,3 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
+
+class BiliViewModel: ObservableObject {
+        
+    
+}

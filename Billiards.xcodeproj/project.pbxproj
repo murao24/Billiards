@@ -135,8 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				04AEDE0D25A5313900445659 /* Apps */,
-				04AEDDFF25A5311F00445659 /* ViewModels */,
 				04AEDE0325A5312800445659 /* Models */,
+				04AEDDFF25A5311F00445659 /* ViewModels */,
 				04AEDDF125A5308600445659 /* Views */,
 				04B7E42625A3DE12008C7A29 /* Assets.xcassets */,
 				04B7E42B25A3DE12008C7A29 /* Info.plist */,

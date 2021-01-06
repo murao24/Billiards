@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct DetailView: View {
+    
+    var participants: [String]
+
     var body: some View {
-        Text("Hello, World!")
+        
+        List {
+            
+            ForEach(participants, id: \.self) { participant in
+                
+                Text(participant)
+            }
+        }
+        .listStyle(InsetGroupedListStyle())
     }
 }
 
 struct DetailVIew_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        DetailView(participants: [""])
     }
 }

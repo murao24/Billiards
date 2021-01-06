@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Bili: Identifiable {
+    
+    let id: UUID
+    var numOfBalls: Int
+    var numOfParticipants: Int
+    var participants: [String]
+}

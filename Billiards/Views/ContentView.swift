@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @ObservedObject var BiliVM: BiliViewModel = BiliViewModel()
-    @State private var numOfBalls: Double = 3.0
-    @State private var participants: [String] = []
-    @State private var nameTextField: String = ""
+
+    @ObservedObject var vm: ViewModel = ViewModel()
     
     var body: some View {
         
@@ -24,41 +21,42 @@ struct ContentView: View {
                     
                     HStack {
                         
-                        Slider(value: $numOfBalls, in: 1...4, step: 1.0) {
+                        Slider(value: $vm.numOfParticipants, in: 1...6, step: 1.0) {
                             
-                            Text("Number of ball")
+                            Text("Number of participants")
                         }
                         
                         Spacer()
                         
-                        Text("\(Int(numOfBalls)) Ball")
-                    }
-                }
-                
-                Section(header: Text("Participant name")) {
-                    
-                    TextField("Enter your name", text: $nameTextField, onCommit: {
+                        Text("\(Int(vm.numOfParticipants))")
                         
-                        if !nameTextField.isEmpty {
+                        Image(systemName: "person")
+                    }
+                    
+                    HStack {
+                        
+                        Slider(value: $vm.numOfBalls, in: 1...4, step: 1.0) {
                             
-                            self.participants.append(nameTextField)
-                            self.nameTextField = ""
+                            Text("Number of balls")
                         }
-                    })
-                    
-                    Button(action: {} ) {
                         
-                        Label("Add a new participant", systemImage: "plus.circle.fill")
+                        Spacer()
+                        
+                        Text("\(Int(vm.numOfBalls))")
+                        
+                        Image(systemName: "circle")
                     }
                 }
+            
             }
             .listStyle(InsetGroupedListStyle())
             
-            NavigationLink(destination: DetailView(participants: participants)) {
+            NavigationLink(destination: DetailView(vm: vm)) {
                 
                 Text("next")
                     .autocapitalization(.allCharacters)
                     .font(.title)
+                    .disabled(!vm.isValidated)
             }
         }
         .navigationTitle(Text("Billiard"))

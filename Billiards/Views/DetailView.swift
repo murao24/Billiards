@@ -9,23 +9,68 @@ import SwiftUI
 
 struct DetailView: View {
     
-    var participants: [String]
+    @ObservedObject var vm: ViewModel
+    @State private var isNextAlert: Bool = false
+    @State private var isShowAlert: Bool = false
 
     var body: some View {
         
-        List {
+        VStack {
             
-            ForEach(participants, id: \.self) { participant in
+            List {
                 
-                Text(participant)
+                Section {
+                    
+                    Text("Are you the first player?")
+                    
+                    Button(action: {
+
+                        isShowAlert = true
+                    }) {
+                        
+                        Text("Check my numbers")
+                    }
+                    .alert(isPresented: $isShowAlert) {
+                        
+                        Alert(
+                            title: Text("Your numbers are..."),
+                            message: Text(vm.showMyNumbers())
+                            )
+                    }
+                }
+            }
+            .listStyle(InsetGroupedListStyle())
+            
+            Button(action: {
+                
+                isNextAlert = true
+            }) {
+                
+                Text("Next")
+                    .font(.title)
+            }
+            .alert(isPresented: $isNextAlert) {
+                
+                Alert(
+                    title: Text("Have you memorized your numbers?"),
+                    message: Text("If yes, tap next."),
+                    primaryButton: .default(Text("Next"), action: {
+                        
+                        // go to next player...
+                        vm.playerOrder += 1
+                    }),
+                    secondaryButton: .cancel())
             }
         }
-        .listStyle(InsetGroupedListStyle())
+        .onAppear {
+            
+            vm.shuffleNumbers()
+        }
     }
 }
 
 struct DetailVIew_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(participants: [""])
+        DetailView(vm: ViewModel())
     }
 }

@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @ObservedObject var BiliVM: BiliViewModel = BiliViewModel()
+
+    @State private var numOfParticipants: Double = 4.0
     @State private var numOfBalls: Double = 3.0
-    @State private var participants: [String] = []
-    @State private var nameTextField: String = ""
     
     var body: some View {
         
@@ -24,37 +22,37 @@ struct ContentView: View {
                     
                     HStack {
                         
-                        Slider(value: $numOfBalls, in: 1...4, step: 1.0) {
+                        Slider(value: $numOfParticipants, in: 1...6, step: 1.0) {
                             
-                            Text("Number of ball")
+                            Text("Number of participants")
                         }
                         
                         Spacer()
                         
-                        Text("\(Int(numOfBalls)) Ball")
-                    }
-                }
-                
-                Section(header: Text("Participant name")) {
-                    
-                    TextField("Enter your name", text: $nameTextField, onCommit: {
+                        Text("\(Int(numOfParticipants))")
                         
-                        if !nameTextField.isEmpty {
+                        Image(systemName: "person")
+                    }
+                    
+                    HStack {
+                        
+                        Slider(value: $numOfBalls, in: 1...4, step: 1.0) {
                             
-                            self.participants.append(nameTextField)
-                            self.nameTextField = ""
+                            Text("Number of balls")
                         }
-                    })
-                    
-                    Button(action: {} ) {
                         
-                        Label("Add a new participant", systemImage: "plus.circle.fill")
+                        Spacer()
+                        
+                        Text("\(Int(numOfBalls))")
+                        
+                        Image(systemName: "circle")
                     }
                 }
+            
             }
             .listStyle(InsetGroupedListStyle())
             
-            NavigationLink(destination: DetailView(participants: participants)) {
+            NavigationLink(destination: DetailView()) {
                 
                 Text("next")
                     .autocapitalization(.allCharacters)

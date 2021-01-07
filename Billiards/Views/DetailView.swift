@@ -9,26 +9,68 @@ import SwiftUI
 
 struct DetailView: View {
     
-    @State private var playerOrder: Int = 0
-    var balls: [String] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
-    @Binding var numOfParticipants: Double
-    @Binding var numOfBalls: Double
+    @ObservedObject var vm: ViewModel
+    @State private var isNextAlert: Bool = false
+    @State private var isShowAlert: Bool = false
 
     var body: some View {
         
-        List {
+        VStack {
             
-            Button(action: {}) {
+            List {
+                
+                Section {
+                    
+                    Text("Are you the first player?")
+                    
+                    Button(action: {
+
+                        isShowAlert = true
+                    }) {
+                        
+                        Text("Check my numbers")
+                    }
+                    .alert(isPresented: $isShowAlert) {
+                        
+                        Alert(
+                            title: Text("Your numbers are..."),
+                            message: Text(vm.showMyNumbers())
+                            )
+                    }
+                }
+            }
+            .listStyle(InsetGroupedListStyle())
+            
+            Button(action: {
+                
+                isNextAlert = true
+            }) {
                 
                 Text("Next")
+                    .font(.title)
+            }
+            .alert(isPresented: $isNextAlert) {
+                
+                Alert(
+                    title: Text("Have you memorized your numbers?"),
+                    message: Text("If yes, tap next."),
+                    primaryButton: .default(Text("Next"), action: {
+                        
+                        // go to next player...
+                        vm.playerOrder += 1
+                    }),
+                    secondaryButton: .cancel())
             }
         }
-        .listStyle(InsetGroupedListStyle())
+        .onAppear {
+            
+            vm.shuffleNumbers()
+        }
     }
 }
 
 struct DetailVIew_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(numOfParticipants: .constant(Double(4.0)), numOfBalls: .constant(Double(4.0)))
+        DetailView(vm: ViewModel())
     }
 }

@@ -10,8 +10,6 @@ import SwiftUI
 struct ContentView: View {
 
     @ObservedObject var vm: ViewModel = ViewModel()
-//    @State private var numOfParticipants: Double = 4.0
-//    @State private var numOfBalls: Double = 3.0
     
     var body: some View {
         
@@ -53,7 +51,7 @@ struct ContentView: View {
             }
             .listStyle(InsetGroupedListStyle())
             
-            NavigationLink(destination: DetailView(numOfParticipants: $vm.numOfParticipants, numOfBalls: $vm.numOfBalls)) {
+            NavigationLink(destination: DetailView(vm: vm)) {
                 
                 Text("next")
                     .autocapitalization(.allCharacters)

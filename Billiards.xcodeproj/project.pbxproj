@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		046D469425A6917800FD9FC6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D469325A6917800FD9FC6 /* ViewModel.swift */; };
 		04AEDDEA25A5307400445659 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AEDDE925A5307400445659 /* DetailView.swift */; };
 		04B7E42325A3DE10008C7A29 /* BilliardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7E42225A3DE10008C7A29 /* BilliardsApp.swift */; };
 		04B7E42525A3DE10008C7A29 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7E42425A3DE10008C7A29 /* ContentView.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		046D469325A6917800FD9FC6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = Billiards/ViewModel.swift; sourceTree = SOURCE_ROOT; };
 		04AEDDE925A5307400445659 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		04B7E41F25A3DE10008C7A29 /* Billiards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billiards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B7E42225A3DE10008C7A29 /* BilliardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilliardsApp.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				04AEDE0D25A5313900445659 /* Apps */,
 				04AEDDF125A5308600445659 /* Views */,
+				046D469325A6917800FD9FC6 /* ViewModel.swift */,
 				04B7E42625A3DE12008C7A29 /* Assets.xcassets */,
 				04B7E42B25A3DE12008C7A29 /* Info.plist */,
 				04B7E42825A3DE12008C7A29 /* Preview Content */,
@@ -280,6 +283,7 @@
 			files = (
 				04B7E42525A3DE10008C7A29 /* ContentView.swift in Sources */,
 				04AEDDEA25A5307400445659 /* DetailView.swift in Sources */,
+				046D469425A6917800FD9FC6 /* ViewModel.swift in Sources */,
 				04B7E42325A3DE10008C7A29 /* BilliardsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

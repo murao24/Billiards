@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State private var numOfParticipants: Double = 4.0
-    @State private var numOfBalls: Double = 3.0
+    @ObservedObject var vm: ViewModel = ViewModel()
+//    @State private var numOfParticipants: Double = 4.0
+//    @State private var numOfBalls: Double = 3.0
     
     var body: some View {
         
@@ -22,28 +23,28 @@ struct ContentView: View {
                     
                     HStack {
                         
-                        Slider(value: $numOfParticipants, in: 1...6, step: 1.0) {
+                        Slider(value: $vm.numOfParticipants, in: 1...6, step: 1.0) {
                             
                             Text("Number of participants")
                         }
                         
                         Spacer()
                         
-                        Text("\(Int(numOfParticipants))")
+                        Text("\(Int(vm.numOfParticipants))")
                         
                         Image(systemName: "person")
                     }
                     
                     HStack {
                         
-                        Slider(value: $numOfBalls, in: 1...4, step: 1.0) {
+                        Slider(value: $vm.numOfBalls, in: 1...4, step: 1.0) {
                             
                             Text("Number of balls")
                         }
                         
                         Spacer()
                         
-                        Text("\(Int(numOfBalls))")
+                        Text("\(Int(vm.numOfBalls))")
                         
                         Image(systemName: "circle")
                     }
@@ -52,11 +53,12 @@ struct ContentView: View {
             }
             .listStyle(InsetGroupedListStyle())
             
-            NavigationLink(destination: DetailView()) {
+            NavigationLink(destination: DetailView(numOfParticipants: $vm.numOfParticipants, numOfBalls: $vm.numOfBalls)) {
                 
                 Text("next")
                     .autocapitalization(.allCharacters)
                     .font(.title)
+                    .disabled(!vm.isValidated)
             }
         }
         .navigationTitle(Text("Billiard"))

@@ -12,6 +12,32 @@ struct DetailView: View {
     @ObservedObject var vm: ViewModel
     @State private var isNextAlert: Bool = false
     @State private var isShowAlert: Bool = false
+    private var playerOrderString: String {
+        
+        if vm.playerOrder == Int(vm.numOfParticipants - 1) {
+            
+            return "last"
+        }
+        
+        switch vm.playerOrder {
+        case 0:
+            return "first"
+        case 1:
+            return "second"
+        case 2:
+            return "third"
+        case 3:
+            return "fourth"
+        case 4:
+            return "fifth"
+        case 5:
+            return "sixth"
+        case 6:
+            return "seventh"
+        default:
+            return "last"
+        }
+    }
     
     var body: some View {
         
@@ -21,7 +47,7 @@ struct DetailView: View {
                 
                 Section {
                     
-                    Text("Are you the first player?")
+                    Text("Are you the \(playerOrderString) player?")
                     
                     Button(action: {
                         
@@ -34,11 +60,7 @@ struct DetailView: View {
                         
                         Alert(
                             title: Text("Your numbers are..."),
-                            message: Text(vm.showMyNumbers()),
-                            dismissButton: .default(Text("OK"), action: {
-                                
-                                vm.removeNumbers()
-                            })
+                            message: Text(vm.showMyNumbers())
                         )
                     }
                 }
@@ -61,7 +83,7 @@ struct DetailView: View {
                     primaryButton: .default(Text("Next"), action: {
                         
                         // go to next player...
-                        vm.playerOrder += 1
+                        vm.removeNumbers()
                     }),
                     secondaryButton: .cancel())
             }

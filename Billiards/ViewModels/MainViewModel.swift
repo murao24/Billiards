@@ -38,7 +38,20 @@ class ViewModel: ObservableObject {
     
     func removeNumbers() {
         
+        guard !balls.isEmpty else { return }
         balls.removeSubrange(0...Int(numOfBalls - 1))
+        
+        proceedPlayerOrder()
+        
+        print(playerOrder)
+    }
+    
+    func proceedPlayerOrder() {
+        
+        if playerOrder < Int(numOfParticipants - 1) {
+            
+            playerOrder += 1
+        }
     }
     
     func showMyNumbers() -> String {

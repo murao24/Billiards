@@ -83,13 +83,14 @@ struct DetailView: View {
                     primaryButton: .default(Text("Next"), action: {
                         
                         // go to next player...
-                        vm.removeNumbers()
+                        vm.nextPlayer()
                     }),
                     secondaryButton: .cancel())
             }
         }
         .onAppear {
             
+            vm.newGame()
             vm.shuffleNumbers()
         }
     }

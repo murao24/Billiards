@@ -36,28 +36,28 @@ class ViewModel: ObservableObject {
         balls.shuffle()
     }
     
-    func showMyNumbers() -> String {
+    func nextPlayer() {
         
-        switch playerOrder {
-        case 0:
-            return "\(balls[0...2])"
-        case 1:
-            return ""
-        case 2:
-            return ""
-        case 3:
-            return ""
-        case 4:
-            return ""
-        case 5:
-            return ""
-        default:
-            return ""
+        guard !balls.isEmpty else { return }
+        balls.removeSubrange(0...Int(numOfBalls - 1))
+        
+        if playerOrder < Int(numOfParticipants - 1) {
+            
+            playerOrder += 1
+        } else if playerOrder == Int(numOfParticipants - 1) {
+            
+            newGame()
         }
     }
     
-    func getNumbers() {
+    func showMyNumbers() -> String {
+
+        return "\(balls.prefix(Int(numOfBalls)))"
+    }
+    
+    func newGame() {
         
-        
+        balls = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+        playerOrder = 0
     }
 }

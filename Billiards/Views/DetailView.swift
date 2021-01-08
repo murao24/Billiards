@@ -12,7 +12,7 @@ struct DetailView: View {
     @ObservedObject var vm: ViewModel
     @State private var isNextAlert: Bool = false
     @State private var isShowAlert: Bool = false
-
+    
     var body: some View {
         
         VStack {
@@ -24,7 +24,7 @@ struct DetailView: View {
                     Text("Are you the first player?")
                     
                     Button(action: {
-
+                        
                         isShowAlert = true
                     }) {
                         
@@ -34,8 +34,12 @@ struct DetailView: View {
                         
                         Alert(
                             title: Text("Your numbers are..."),
-                            message: Text(vm.showMyNumbers())
-                            )
+                            message: Text(vm.showMyNumbers()),
+                            dismissButton: .default(Text("OK"), action: {
+                                
+                                vm.removeNumbers()
+                            })
+                        )
                     }
                 }
             }
